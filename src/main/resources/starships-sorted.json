@@ -1,0 +1,32 @@
+[
+      {
+         "cargoCapacity":"110",
+         "consumables":"1 week",
+         "costInCredits":"149999",
+         "crew":"1",
+         "hyperdriveRating":"1.0",
+         "length":"12.5",
+         "manufacturer":"Incom Corporation",
+         "maxAtmosphericSpeed":"1050",
+         "mglt":"100",
+         "model":"T-65 X-wing",
+         "name":"X-wing",
+         "passengers":"0",
+         "starshipClass":"Starfighter"
+      },
+      {
+         "cargoCapacity":"80000",
+         "consumables":"2 months",
+         "costInCredits":"240000",
+         "crew":"6",
+         "hyperdriveRating":"1.0",
+         "length":"20",
+         "manufacturer":"Sienar Fleet Systems",
+         "maxAtmosphericSpeed":"850",
+         "mglt":"50",
+         "model":"Lambda-class T-4a shuttle",
+         "name":"Imperial shuttle",
+         "passengers":"20",
+         "starshipClass":"Armed government transport"
+      }
+   ]

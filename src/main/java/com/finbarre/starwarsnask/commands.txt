@@ -1,0 +1,3 @@
+
+./mvnw package clean   
+./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=starwars

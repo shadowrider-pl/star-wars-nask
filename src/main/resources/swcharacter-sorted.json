@@ -1,0 +1,12 @@
+{ 
+   "birthYear":"19BBY",
+   "eyeColor":"blue",
+   "gender":"male",
+   "hairColor":"blond",
+   "height":"172",
+   "id":1,
+   "mass":"77",
+   "name":"Luke Skywalker",
+   "skinColor":"fair"
+
+}
