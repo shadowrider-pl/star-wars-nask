@@ -2,14 +2,15 @@ package com.finbarre.starwarsnask.payload;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -49,9 +50,9 @@ public class Character implements Serializable {
     @Column(name = "gender")
 	private String gender;
     
-    @OneToOne
+    @ManyToOne
 	Homeworld homeworld;
-//    
-//    @OneToMany
-//	ArrayList<Starship> starships = new ArrayList<Starship>();
+    
+    @OneToMany
+	List<Starship> starships = new ArrayList<Starship>();
 }
