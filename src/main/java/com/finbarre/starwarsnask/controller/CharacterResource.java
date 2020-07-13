@@ -41,9 +41,10 @@ public class CharacterResource {
 		return new ResponseEntity<CharactersHelper>(characterHelper, new HttpHeaders(), HttpStatus.OK);
 	}
 
-	@GetMapping("/characters/{id}")
-	public Character getCharacter(@PathVariable Long id) {
+	@GetMapping("/{id}")
+	public ResponseEntity<Character> getCharacter(@PathVariable Long id) {
 		Optional<Character> character = characterRepository.findById(id);
-		return character.get();
+		return character.map(response -> ResponseEntity.ok().body(response))
+	            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 }

@@ -18,7 +18,7 @@ public class CharacterService {
 	CharacterRepository characterRepository;
 
 	public CharactersHelper getAllCharacters(Integer pageNo, Integer pageSize, String sortBy) {
-		
+
 		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
 
 		Page<Character> pagedResult = characterRepository.findAll(paging);
@@ -26,11 +26,7 @@ public class CharacterService {
 		CharactersHelper characterHelper = new CharactersHelper(pagedResult.getTotalElements(),
 				pagedResult.getTotalPages(), pagedResult.getContent());
 
-//		if (pagedResult.hasContent()) {
-			return characterHelper;
-//		} else {
-//			return new CharacterHelper();
-//		}
+		return characterHelper;
 	}
 
 }
