@@ -1,5 +1,5 @@
 
-./mvnw package clean   
+./mvnw clean package    
 ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=starwars
 
 Swagger:
