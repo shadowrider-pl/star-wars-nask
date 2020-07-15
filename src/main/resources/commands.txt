@@ -1,6 +1,0 @@
-
-./mvnw clean package    
-./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=starwars
-
-Swagger:
-http://localhost:8080/swagger-ui.html
