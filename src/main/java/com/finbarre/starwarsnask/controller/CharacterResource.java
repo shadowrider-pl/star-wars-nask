@@ -36,13 +36,14 @@ public class CharacterResource {
 	@GetMapping
 	public ResponseEntity<CharactersHelper> getAllCharacters(@RequestParam(defaultValue = "0") Integer page,
 			@RequestParam(defaultValue = "10") Integer pageSize, @RequestParam(defaultValue = "id") String sortBy) {
-		log.debug("REST request to get a page of Characters. page=" + page);
+		log.debug("REST request to get a page of Characters.");
 		CharactersHelper characterHelper = characterService.getAllCharacters(page, pageSize, sortBy);
 		return new ResponseEntity<CharactersHelper>(characterHelper, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Character> getCharacter(@PathVariable Long id) {
+		log.debug("REST request to get Character: {}", id);
 		Optional<Character> character = characterRepository.findById(id);
 		return character.map(response -> ResponseEntity.ok().body(response))
 	            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
