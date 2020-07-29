@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.finbarre.starwarsnask.helper.CharactersHelper;
 import com.finbarre.starwarsnask.payload.Character;
-import com.finbarre.starwarsnask.repository.CharacterRepository;
 import com.finbarre.starwarsnask.service.CharacterService;
 
 @RestController
@@ -24,12 +23,10 @@ public class CharacterResource {
 
 	private final Logger log = LoggerFactory.getLogger(CharacterResource.class);
 
-	private final CharacterRepository characterRepository;
 
 	private final CharacterService characterService;
 
-	public CharacterResource(CharacterRepository characterRepository, CharacterService characterService) {
-		this.characterRepository = characterRepository;
+	public CharacterResource( CharacterService characterService) {
 		this.characterService=characterService;
 	}
 
@@ -44,7 +41,7 @@ public class CharacterResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<Character> getCharacter(@PathVariable Long id) {
 		log.debug("REST request to get Character: {}", id);
-		Optional<Character> character = characterRepository.findById(id);
+		Optional<Character> character = characterService.findById(id);
 		return character.map(response -> ResponseEntity.ok().body(response))
 	            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}

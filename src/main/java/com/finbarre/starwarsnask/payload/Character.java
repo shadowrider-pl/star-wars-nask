@@ -33,7 +33,7 @@ public class Character implements Serializable {
 	private Integer height;
 	
 	@Column(name = "mass")
-	private Integer mass;
+	private Double mass;
 	
 	@Column(name = "hair_color")
 	private String hairColor;

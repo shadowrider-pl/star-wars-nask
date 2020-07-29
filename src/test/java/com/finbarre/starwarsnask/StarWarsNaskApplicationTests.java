@@ -1,7 +1,6 @@
 package com.finbarre.starwarsnask;
 
 import static org.hamcrest.Matchers.hasItem;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -25,9 +24,6 @@ import com.finbarre.starwarsnask.helper.CharactersHelper;
 import com.finbarre.starwarsnask.payload.Character;
 import com.finbarre.starwarsnask.payload.Homeworld;
 import com.finbarre.starwarsnask.payload.Starship;
-import com.finbarre.starwarsnask.repository.CharacterRepository;
-import com.finbarre.starwarsnask.repository.HomeworldRepository;
-import com.finbarre.starwarsnask.repository.StarshipRepository;
 import com.finbarre.starwarsnask.service.CharacterService;
 
 @SpringBootTest
@@ -41,24 +37,15 @@ class StarWarsNaskApplicationTests {
 	private EntityManager em;
 
 	@Autowired
-	private CharacterRepository characterRepository;
-
-	@Autowired
-	private HomeworldRepository homeworldRepository;
-
-	@Autowired
-	private StarshipRepository starshipRepository;
-
-	@Autowired
 	CharacterService characterService;
 
 	private Character character = new Character();
 	private Homeworld homeworld = new Homeworld();
 	private Starship starship = new Starship();
 
-	private static final String NAME = "Gowron";
-	private static final String HOMEWORLD = "Klingon";
-	private static final String SHIP = "Bird of Prey";
+	private static final String NAME = "Luke Skywalker";
+	private static final String HOMEWORLD = "Tatooine";
+	private static final String SHIP = "T-65 X-wing";
 
 	public static Homeworld createHomeworldEntity(EntityManager em) {
 		Homeworld homeworld = new Homeworld();
@@ -102,10 +89,7 @@ class StarWarsNaskApplicationTests {
 	@Test
 	@Transactional
 	void getAllCharacters() throws Exception {
-		homeworldRepository.saveAndFlush(homeworld);
-		starshipRepository.saveAndFlush(starship);
-		characterRepository.saveAndFlush(character);
-		mockMvc.perform(get("/characters").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+		mockMvc.perform(get("/characters?page=1").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$.elements.[*].name").value(hasItem(NAME)))
 				.andExpect(jsonPath("$.elements.[*].homeworld.name").value(hasItem(HOMEWORLD)))
 				.andExpect(jsonPath("$.elements.[*].starships.[*].model").value(hasItem(SHIP)));
@@ -114,11 +98,7 @@ class StarWarsNaskApplicationTests {
 	@Test
 	@Transactional
 	void getCharacter() throws Exception {
-
-		homeworldRepository.saveAndFlush(homeworld);
-		starshipRepository.saveAndFlush(starship);
-		characterRepository.saveAndFlush(character);
-		mockMvc.perform(get("/characters/{id}", character.getId()).contentType(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/characters/1", character.getId()).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(jsonPath("$.name").value(NAME))
 				.andExpect(jsonPath("$.homeworld.name").value(HOMEWORLD))
 				.andExpect(jsonPath("$.starships.[*].model").value(hasItem(SHIP)));

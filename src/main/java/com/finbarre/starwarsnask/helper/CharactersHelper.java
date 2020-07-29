@@ -13,11 +13,12 @@ public class CharactersHelper implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private long count;
-	private Integer pages;
+	private long pages;
 	private List<Character> elements;
 	public CharactersHelper(long l, Integer pages, List<Character> elements) {
 		this.count = l;
 		this.pages = pages;
 		this.elements = elements;
 	}
+	public CharactersHelper() {	}
 }
